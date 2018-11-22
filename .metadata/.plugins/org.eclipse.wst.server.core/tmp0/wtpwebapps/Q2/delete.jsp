@@ -1,0 +1,42 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="Connection.Mysql.MysqlConnectJDBC.MySQLConnection"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>북마크 이동</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("utf-8");
+
+	int num=Integer.parseInt(request.getParameter("num"));
+
+	Connection conn=null;
+	PreparedStatement pstmt=null;
+
+	conn=MySQLConnection.GetMySQLConnection();
+
+	String sql;
+	sql="delete from bookmark where num=?";
+
+	pstmt=conn.prepareStatement(sql);
+	pstmt.setInt(1, num);
+
+	pstmt.executeUpdate();
+
+	MySQLConnection.close(conn);
+	MySQLConnection.close(pstmt);
+
+
+%>
+
+<script>
+parent.document.location.reload();
+</script>
+
+</body>
+</html>

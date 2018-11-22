@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+#add_but{
+		border:2px solid blue;
+		border-radius: 3px;
+		background-color:lightblue;
+		color:white;
+		text-decoration: none;
+		display:block;
+	}
